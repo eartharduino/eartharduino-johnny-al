@@ -1,3 +1,45 @@
-請運用DHT22及RTC時鐘模組與SD卡模組，可將時間、溫度、濕度資料紀錄在SD卡檔案內。
-資料格式：日期，時分秒，溫度，濕度。
-完成期限：108年11月17日
+
+#include <SPI.h>
+#include <SD.h>
+#include "DHT.h"       
+#define DHTPIN 2        
+#define DHTTYPE DHT22   
+DHT dht(DHTPIN, DHTTYPE);
+
+File myF;
+int i=0;
+void setup() {
+ 
+  Serial.begin(9600);
+  while (!Serial) {
+  
+  }
+  Serial.print("Initializing SD card...");
+  dht.begin();
+}
+
+void loop() {
+  int dhtT = dht.readTemperature();   
+  int dhtH = dht.readHumidity();       
+  if (!SD.begin(4)) {
+    Serial.println("initialization failed!");
+    while (1);
+  }
+  Serial.println("initialization done.");
+
+  myF = SD.open("clock.txt", FILE_WRITE);
+
+  if (myF) {
+    Serial.print("Writing to clock.txt...");
+    myF.print(dhtT);
+    myF.print(",");
+    myF.println("clock");
+    i++;
+    delay(10000);
+    
+    myF.flush();
+    Serial.println("done.");
+  } else {
+    Serial.println("error opening clock.txt");
+  }
+}
