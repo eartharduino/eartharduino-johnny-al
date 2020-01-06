@@ -1,2 +1,262 @@
-請運用課程中所學知識技能，加一點創意變化，可新增元件或電器，創作自己的作品。須完成程式碼，並可正常運作。完成實作作品請自行拍照存檔。
-完成期限：108年12月31日
+RGBLED模組結合8*8矩陣
+#include<LedControl.h> //使用程式庫「LedControl」
+LedControl cc=LedControl(12,11,10,1);
+LedControl cc1=LedControl(9,8,7,1);
+#include "SevenSegmentTM1637.h"
+const byte PIN_CLK = 3;
+const byte PIN_DIO = 4; 
+SevenSegmentTM1637 display(PIN_CLK, PIN_DIO);
+int ledR=11;
+int ledG=12;
+int ledB=13;
+
+
+void setup() {
+  cc.shutdown(0,false);
+  cc.setIntensity(0,8);
+  cc.clearDisplay(0);
+  cc1.shutdown(0,false);
+  cc1.setIntensity(0,8);
+  cc1.clearDisplay(0);
+  display.begin();
+  display.setBacklight(100);
+  pinMode(ledR,OUTPUT);
+  pinMode(ledG,OUTPUT);
+  pinMode(ledB,OUTPUT);
+}
+
+void loop() {
+  for (int i=30; i>= 0; i--) {
+display.clear(); 
+if(i>15)
+{
+  analogWrite(ledR,0);
+  analogWrite(ledG,255);
+  analogWrite(ledB,0);
+
+  for (int i=1; i<15;i++){
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B00011000);
+  cc.setRow(0,5,B00110100);
+  cc.setRow(0,6,B00100010);
+  cc.setRow(0,7,B01100110);
+  
+
+  delay(150);
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111100);
+  cc.setRow(0,4,B01011010);
+  cc.setRow(0,5,B00110100);
+  cc.setRow(0,6,B01100010);
+  cc.setRow(0,7,B01000010);
+
+  delay(150);
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111100);
+  cc.setRow(0,4,B10110010);
+  cc.setRow(0,5,B00011000);
+  cc.setRow(0,6,B01100110);
+  cc.setRow(0,7,B00000010);
+
+  delay(150);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01111000);
+  cc.setRow(0,3,B01100100);
+  cc.setRow(0,4,B10110000);
+  cc.setRow(0,5,B00101000);
+  cc.setRow(0,6,B11000110);
+  cc.setRow(0,7,B00000010);
+ delay(150);
+  
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B10110100);
+  cc.setRow(0,5,B00111010);
+  cc.setRow(0,6,B00100110);
+  cc.setRow(0,7,B11100010);
+ 
+
+  delay(150);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B10110100);
+  cc.setRow(0,5,B00110010);
+  cc.setRow(0,6,B00100110);
+  cc.setRow(0,7,B11000100);
+
+  
+  delay(150);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B01110100);
+  cc.setRow(0,5,B00110000);
+  cc.setRow(0,6,B01011000);
+  cc.setRow(0,7,B00101000);
+ 
+
+  delay(150);
+
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B00011000);
+  cc.setRow(0,5,B00010100);
+  cc.setRow(0,6,B00011100);
+  cc.setRow(0,7,B00000100);
+
+ 
+  delay(150);
+  }
+}
+else if(i<=15&&i>=10)
+{
+  analogWrite(ledR,100);
+  analogWrite(ledG,155);
+  analogWrite(ledB,0);
+}
+  for (int a=1; a<5;a++){
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B00011000);
+  cc.setRow(0,5,B00110100);
+  cc.setRow(0,6,B00100010);
+  cc.setRow(0,7,B01100110);
+  
+
+  delay(50);
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111100);
+  cc.setRow(0,4,B01011010);
+  cc.setRow(0,5,B00110100);
+  cc.setRow(0,6,B01100010);
+  cc.setRow(0,7,B01000010);
+ 
+
+  delay(50);
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111100);
+  cc.setRow(0,4,B10110010);
+  cc.setRow(0,5,B00011000);
+  cc.setRow(0,6,B01100110);
+  cc.setRow(0,7,B00000010);
+ 
+  
+  delay(50);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01111000);
+  cc.setRow(0,3,B01100100);
+  cc.setRow(0,4,B10110000);
+  cc.setRow(0,5,B00101000);
+  cc.setRow(0,6,B11000110);
+  cc.setRow(0,7,B00000010);
+
+ 
+  delay(50);
+  
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B10110100);
+  cc.setRow(0,5,B00111010);
+  cc.setRow(0,6,B00100110);
+  cc.setRow(0,7,B11100010);
+ 
+ 
+  delay(50);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B10110100);
+  cc.setRow(0,5,B00110010);
+  cc.setRow(0,6,B00100110);
+  cc.setRow(0,7,B11000100);
+
+ 
+  delay(50);
+
+  cc.setRow(0,0,B11000000);
+  cc.setRow(0,1,B11000000);
+  cc.setRow(0,2,B01100000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B01110100);
+  cc.setRow(0,5,B00110000);
+  cc.setRow(0,6,B01011000);
+  cc.setRow(0,7,B00101000);
+ 
+ 
+  delay(50);
+
+
+  cc.setRow(0,0,B01100000);
+  cc.setRow(0,1,B01100000);
+  cc.setRow(0,2,B00110000);
+  cc.setRow(0,3,B01111000);
+  cc.setRow(0,4,B00011000);
+  cc.setRow(0,5,B00010100);
+  cc.setRow(0,6,B00011100);
+  cc.setRow(0,7,B00000100);
+
+ 
+  delay(50);
+  }
+}
+  
+  cc.clearDisplay(0);
+  cc1.clearDisplay(0);
+  
+  
+
+ else 
+ {
+  analogWrite(ledR,255);
+  analogWrite(ledG,0);
+  analogWrite(ledB,0);
+  cc1.setRow(0,0,B00011000);
+  cc1.setRow(0,1,B00011000);
+  cc1.setRow(0,2,B00111100);
+  cc1.setRow(0,3,B01011010);
+  cc1.setRow(0,4,B01011010);
+  cc1.setRow(0,5,B00011000);
+  cc1.setRow(0,6,B00100100);
+  cc1.setRow(0,7,B01100110);
+  delay(10000);
+ }
+  cc.clearDisplay(0);
+  cc1.clearDisplay(0);
+  
+  
+}
